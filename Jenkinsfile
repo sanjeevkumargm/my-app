@@ -1,10 +1,11 @@
 node{
-   def mvn = tool (name: 'maven', type: 'maven') + '/bin/mvn'
    stage('SCM Checkout'){
       git 'https://github.com/sanjeevkumargm/my-app'
    }
    stage('Complile-Package'){
-   sh "${mvn} clean package"
+      // Get Maven Home Path
+    def maven_home = tool name: 'maven', type: 'maven'
+      sh "${maven_home}/bin/mvn package"
    }
  }
       
